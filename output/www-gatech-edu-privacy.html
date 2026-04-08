@@ -1,0 +1,321 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#f4b400", "font": {"color": "#222222"}, "id": "https://www.gatech.edu/privacy", "label": "Privacy \u0026 Legal Notice", "shape": "dot", "size": 28, "title": "Privacy \u0026 Legal Notice\u003cbr\u003eURL: https://www.gatech.edu/privacy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: True\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://comm.gatech.edu/", "label": "Office of Institute Communications", "shape": "dot", "size": 16, "title": "Office of Institute Communications\u003cbr\u003eURL: https://comm.gatech.edu/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://s1.generalcounsel.gatech.edu/data-privacy/landing-page", "label": "Privacy Program within the Office of Ethics and Compliance", "shape": "dot", "size": 16, "title": "Privacy Program within the Office of Ethics and Compliance\u003cbr\u003eURL: https://s1.generalcounsel.gatech.edu/data-privacy/landing-page\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://oria.gatech.edu/", "label": "IRB", "shape": "dot", "size": 16, "title": "IRB\u003cbr\u003eURL: https://oria.gatech.edu/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy", "label": "EU General Data Protection Regulation Compliance Policy", "shape": "dot", "size": 16, "title": "EU General Data Protection Regulation Compliance Policy\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://catalog.gatech.edu/policies/ferpa/", "label": "Georgia Tech\u0027s definition of Directory Information", "shape": "dot", "size": 16, "title": "Georgia Tech\u0027s definition of Directory Information\u003cbr\u003eURL: https://catalog.gatech.edu/policies/ferpa/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information", "label": "Georgia Tech Controlled Unclassified Information Policy", "shape": "dot", "size": 24, "title": "Georgia Tech Controlled Unclassified Information Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://generalcounsel.gatech.edu/legal-affairs/home", "label": "ORA", "shape": "dot", "size": 16, "title": "ORA\u003cbr\u003eURL: https://generalcounsel.gatech.edu/legal-affairs/home\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "http://www.legal.gatech.edu/open-records-act", "label": "legal.gatech.edu", "shape": "dot", "size": 24, "title": "legal.gatech.edu\u003cbr\u003eURL: http://www.legal.gatech.edu/open-records-act\u003cbr\u003eStatus: -1\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTPSConnectionPool(host=\u0027www.legal.gatech.edu\u0027, port=443): Max retries exceeded with url: /open-records-act (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for \u0027www.legal.gatech.edu\u0027. (_ssl.c:1081)\")))"}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.usg.edu/records_management/schedules", "label": "https://www.usg.edu/records_management/schedules/", "shape": "dot", "size": 16, "title": "https://www.usg.edu/records_management/schedules/\u003cbr\u003eURL: https://www.usg.edu/records_management/schedules\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.usg.edu/records_management/schedules/934", "label": "https://www.usg.edu/records_management/schedules/934", "shape": "dot", "size": 16, "title": "https://www.usg.edu/records_management/schedules/934\u003cbr\u003eURL: https://www.usg.edu/records_management/schedules/934\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.usg.edu/records_management/schedules/930", "label": "https://www.usg.edu/records_management/schedules/930", "shape": "dot", "size": 16, "title": "https://www.usg.edu/records_management/schedules/930\u003cbr\u003eURL: https://www.usg.edu/records_management/schedules/930\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "Office of Institute Communications", "to": "https://comm.gatech.edu/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "Privacy Program within the Office of Ethics and Compliance", "to": "https://s1.generalcounsel.gatech.edu/data-privacy/landing-page"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "IRB", "to": "https://oria.gatech.edu/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "EU General Data Protection Regulation Compliance Policy", "to": "https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "Georgia Tech\u0027s definition of Directory Information", "to": "https://catalog.gatech.edu/policies/ferpa/"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.gatech.edu/privacy", "label": "", "title": "Georgia Tech Controlled Unclassified Information Policy", "to": "https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "ORA", "to": "https://generalcounsel.gatech.edu/legal-affairs/home"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.gatech.edu/privacy", "label": "", "title": "Open Records Act page on the Legal Affairs website", "to": "http://www.legal.gatech.edu/open-records-act"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "https://www.usg.edu/records_management/schedules/", "to": "https://www.usg.edu/records_management/schedules"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "https://www.usg.edu/records_management/schedules/934", "to": "https://www.usg.edu/records_management/schedules/934"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.gatech.edu/privacy", "label": "", "title": "https://www.usg.edu/records_management/schedules/930", "to": "https://www.usg.edu/records_management/schedules/930"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"font": {"size": 14}, "shape": "dot", "scaling": {"min": 12, "max": 36}}, "edges": {"arrows": {"to": {"enabled": true}}, "smooth": {"enabled": true, "type": "dynamic"}}, "physics": {"barnesHut": {"gravitationalConstant": -3200, "springLength": 180, "springConstant": 0.03}, "minVelocity": 0.75}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+source,target,anchor_texts,target_dead
+https://www.gatech.edu/privacy,http://www.legal.gatech.edu/open-records-act,Open Records Act page on the Legal Affairs website,True
+https://www.gatech.edu/privacy,https://catalog.gatech.edu/policies/ferpa/,Georgia Tech's definition of Directory Information,False
+https://www.gatech.edu/privacy,https://comm.gatech.edu/,Office of Institute Communications,False
+https://www.gatech.edu/privacy,https://generalcounsel.gatech.edu/legal-affairs/home,ORA,False
+https://www.gatech.edu/privacy,https://oria.gatech.edu/,IRB,False
+https://www.gatech.edu/privacy,https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information,Georgia Tech Controlled Unclassified Information Policy,True
+https://www.gatech.edu/privacy,https://s1.generalcounsel.gatech.edu/data-privacy/landing-page,Privacy Program within the Office of Ethics and Compliance,False
+https://www.gatech.edu/privacy,https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy,EU General Data Protection Regulation Compliance Policy,False
+https://www.gatech.edu/privacy,https://www.usg.edu/records_management/schedules,https://www.usg.edu/records_management/schedules/,False
+https://www.gatech.edu/privacy,https://www.usg.edu/records_management/schedules/930,https://www.usg.edu/records_management/schedules/930,False
+https://www.gatech.edu/privacy,https://www.usg.edu/records_management/schedules/934,https://www.usg.edu/records_management/schedules/934,False

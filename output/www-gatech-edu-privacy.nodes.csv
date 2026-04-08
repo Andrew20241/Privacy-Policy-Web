@@ -1,0 +1,13 @@
+url,label,title,status_code,dead,internal,visited,start,depth,error,content_type
+http://www.legal.gatech.edu/open-records-act,legal.gatech.edu,,-1,True,False,False,False,-1,"HTTPSConnectionPool(host='www.legal.gatech.edu', port=443): Max retries exceeded with url: /open-records-act (Caused by SSLError(SSLCertVerificationError(1, ""[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.legal.gatech.edu'. (_ssl.c:1081)"")))",
+https://catalog.gatech.edu/policies/ferpa/,Georgia Tech's definition of Directory Information,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://comm.gatech.edu/,Office of Institute Communications,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://generalcounsel.gatech.edu/legal-affairs/home,ORA,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://oria.gatech.edu/,IRB,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information,Georgia Tech Controlled Unclassified Information Policy,,404,True,False,False,False,-1,HTTP 404,text/html; charset=UTF-8
+https://s1.generalcounsel.gatech.edu/data-privacy/landing-page,Privacy Program within the Office of Ethics and Compliance,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://www.gatech.edu/privacy,Privacy & Legal Notice,Privacy & Legal Notice,200,False,True,True,True,0,,text/html; charset=UTF-8
+https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy,EU General Data Protection Regulation Compliance Policy,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://www.usg.edu/records_management/schedules,https://www.usg.edu/records_management/schedules/,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://www.usg.edu/records_management/schedules/930,https://www.usg.edu/records_management/schedules/930,,200,False,False,False,False,-1,,text/html; charset=UTF-8
+https://www.usg.edu/records_management/schedules/934,https://www.usg.edu/records_management/schedules/934,,200,False,False,False,False,-1,,text/html; charset=UTF-8

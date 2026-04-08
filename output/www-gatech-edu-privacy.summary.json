@@ -1,0 +1,15 @@
+{
+  "start_url": "https://www.gatech.edu/privacy",
+  "pages_crawled": 1,
+  "nodes": 12,
+  "edges": 11,
+  "dead_nodes": 2,
+  "internal_nodes": 1,
+  "external_nodes": 11,
+  "graphml": "output/www-gatech-edu-privacy.graphml",
+  "networkx_pickle": "output/www-gatech-edu-privacy.networkx.pkl",
+  "nodes_csv": "output/www-gatech-edu-privacy.nodes.csv",
+  "edges_csv": "output/www-gatech-edu-privacy.edges.csv",
+  "html_graph": "output/www-gatech-edu-privacy.html",
+  "networkx_png": "output/www-gatech-edu-privacy.networkx.png"
+}

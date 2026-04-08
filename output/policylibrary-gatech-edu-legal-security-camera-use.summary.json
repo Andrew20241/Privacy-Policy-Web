@@ -1,0 +1,15 @@
+{
+  "start_url": "https://policylibrary.gatech.edu/legal/security-camera-use",
+  "pages_crawled": 15,
+  "nodes": 49,
+  "edges": 103,
+  "dead_nodes": 8,
+  "internal_nodes": 16,
+  "external_nodes": 33,
+  "graphml": "output/policylibrary-gatech-edu-legal-security-camera-use.graphml",
+  "networkx_pickle": "output/policylibrary-gatech-edu-legal-security-camera-use.networkx.pkl",
+  "nodes_csv": "output/policylibrary-gatech-edu-legal-security-camera-use.nodes.csv",
+  "edges_csv": "output/policylibrary-gatech-edu-legal-security-camera-use.edges.csv",
+  "html_graph": "output/policylibrary-gatech-edu-legal-security-camera-use.html",
+  "networkx_png": "output/policylibrary-gatech-edu-legal-security-camera-use.networkx.png"
+}

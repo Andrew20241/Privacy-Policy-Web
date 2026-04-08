@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d11" for="edge" attr.name="anchor_texts" attr.type="string" />
+  <key id="d10" for="node" attr.name="error" attr.type="string" />
+  <key id="d9" for="node" attr.name="url" attr.type="string" />
+  <key id="d8" for="node" attr.name="start" attr.type="boolean" />
+  <key id="d7" for="node" attr.name="content_type" attr.type="string" />
+  <key id="d6" for="node" attr.name="depth" attr.type="long" />
+  <key id="d5" for="node" attr.name="visited" attr.type="boolean" />
+  <key id="d4" for="node" attr.name="internal" attr.type="boolean" />
+  <key id="d3" for="node" attr.name="dead" attr.type="boolean" />
+  <key id="d2" for="node" attr.name="status_code" attr.type="long" />
+  <key id="d1" for="node" attr.name="title" attr.type="string" />
+  <key id="d0" for="node" attr.name="label" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="https://www.gatech.edu/privacy">
+      <data key="d0">Privacy &amp; Legal Notice</data>
+      <data key="d1">Privacy &amp; Legal Notice</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d6">0</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d8">True</data>
+      <data key="d9">https://www.gatech.edu/privacy</data>
+      <data key="d10" />
+    </node>
+    <node id="https://comm.gatech.edu/">
+      <data key="d0">Office of Institute Communications</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://comm.gatech.edu/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://s1.generalcounsel.gatech.edu/data-privacy/landing-page">
+      <data key="d0">Privacy Program within the Office of Ethics and Compliance</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://s1.generalcounsel.gatech.edu/data-privacy/landing-page</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://oria.gatech.edu/">
+      <data key="d0">IRB</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://oria.gatech.edu/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy">
+      <data key="d0">EU General Data Protection Regulation Compliance Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://catalog.gatech.edu/policies/ferpa/">
+      <data key="d0">Georgia Tech's definition of Directory Information</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://catalog.gatech.edu/policies/ferpa/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information">
+      <data key="d0">Georgia Tech Controlled Unclassified Information Policy</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://generalcounsel.gatech.edu/legal-affairs/home">
+      <data key="d0">ORA</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://generalcounsel.gatech.edu/legal-affairs/home</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="http://www.legal.gatech.edu/open-records-act">
+      <data key="d0">legal.gatech.edu</data>
+      <data key="d10">HTTPSConnectionPool(host='www.legal.gatech.edu', port=443): Max retries exceeded with url: /open-records-act (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.legal.gatech.edu'. (_ssl.c:1081)")))</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7" />
+      <data key="d9">http://www.legal.gatech.edu/open-records-act</data>
+      <data key="d1" />
+      <data key="d2">-1</data>
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.usg.edu/records_management/schedules">
+      <data key="d0">https://www.usg.edu/records_management/schedules/</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.usg.edu/records_management/schedules</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.usg.edu/records_management/schedules/934">
+      <data key="d0">https://www.usg.edu/records_management/schedules/934</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.usg.edu/records_management/schedules/934</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.usg.edu/records_management/schedules/930">
+      <data key="d0">https://www.usg.edu/records_management/schedules/930</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.usg.edu/records_management/schedules/930</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <edge source="https://www.gatech.edu/privacy" target="https://comm.gatech.edu/">
+      <data key="d11">Office of Institute Communications</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://s1.generalcounsel.gatech.edu/data-privacy/landing-page">
+      <data key="d11">Privacy Program within the Office of Ethics and Compliance</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://oria.gatech.edu/">
+      <data key="d11">IRB</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://www.policylibrary.gatech.edu/legal/eu-general-data-protection-regulation-compliance-policy">
+      <data key="d11">EU General Data Protection Regulation Compliance Policy</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://catalog.gatech.edu/policies/ferpa/">
+      <data key="d11">Georgia Tech's definition of Directory Information</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://policylibrary.gatech.edu/information-technology/controlled-unclassified-information">
+      <data key="d11">Georgia Tech Controlled Unclassified Information Policy</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://generalcounsel.gatech.edu/legal-affairs/home">
+      <data key="d11">ORA</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="http://www.legal.gatech.edu/open-records-act">
+      <data key="d11">Open Records Act page on the Legal Affairs website</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://www.usg.edu/records_management/schedules">
+      <data key="d11">https://www.usg.edu/records_management/schedules/</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://www.usg.edu/records_management/schedules/934">
+      <data key="d11">https://www.usg.edu/records_management/schedules/934</data>
+    </edge>
+    <edge source="https://www.gatech.edu/privacy" target="https://www.usg.edu/records_management/schedules/930">
+      <data key="d11">https://www.usg.edu/records_management/schedules/930</data>
+    </edge>
+  </graph>
+</graphml>

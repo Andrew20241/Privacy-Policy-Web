@@ -1,0 +1,963 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d11" for="edge" attr.name="anchor_texts" attr.type="string" />
+  <key id="d10" for="node" attr.name="error" attr.type="string" />
+  <key id="d9" for="node" attr.name="url" attr.type="string" />
+  <key id="d8" for="node" attr.name="start" attr.type="boolean" />
+  <key id="d7" for="node" attr.name="content_type" attr.type="string" />
+  <key id="d6" for="node" attr.name="depth" attr.type="long" />
+  <key id="d5" for="node" attr.name="visited" attr.type="boolean" />
+  <key id="d4" for="node" attr.name="internal" attr.type="boolean" />
+  <key id="d3" for="node" attr.name="dead" attr.type="boolean" />
+  <key id="d2" for="node" attr.name="status_code" attr.type="long" />
+  <key id="d1" for="node" attr.name="title" attr.type="string" />
+  <key id="d0" for="node" attr.name="label" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="https://policylibrary.gatech.edu/legal/security-camera-use">
+      <data key="d0">Security Camera Use | Policy Library</data>
+      <data key="d1">Security Camera Use | Policy Library</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d6">0</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d8">True</data>
+      <data key="d9">https://policylibrary.gatech.edu/legal/security-camera-use</data>
+      <data key="d10" />
+    </node>
+    <node id="https://gtlowvoltagestandards.gatech.edu/node/123">
+      <data key="d0">http://gtlowvoltagestandards.gatech.edu/node/123</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://gtlowvoltagestandards.gatech.edu/node/123</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.police.gatech.edu/documents/reportrequest.pdf">
+      <data key="d0">GTPD Report Request Form</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.police.gatech.edu/documents/reportrequest.pdf</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.police.gatech.edu/frequently-asked-questions">
+      <data key="d0">Frequently Asked Questions</data>
+      <data key="d1">Frequently Asked Questions | Georgia Tech Police Department</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.police.gatech.edu/frequently-asked-questions</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d0">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.usg.edu/audit/compliance/ethics/">
+      <data key="d0">University System of Georgia Ethics Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.usg.edu/audit/compliance/ethics/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d0">Acceptable Use Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy</data>
+      <data key="d1">Acceptable Use Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">1</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d0">Cyber Security Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy</data>
+      <data key="d1">Cyber Security Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">1</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d0">Data Privacy Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy</data>
+      <data key="d1">Data Privacy Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">1</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d0">Data Access Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/data-resources</data>
+      <data key="d1">Data Resources | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">2</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d0">Policy Exceptions</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/information-technology/policy-exceptions</data>
+      <data key="d1">Policy Exceptions | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">2</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d0">Responsible Disclosure Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy</data>
+      <data key="d1">Responsible Disclosure Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">2</data>
+    </node>
+    <node id="https://security.gatech.edu/information-security-procedures-standards-and-forms/">
+      <data key="d0">Security Procedures and Standards</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://security.gatech.edu/information-security-procedures-standards-and-forms/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://gatech.service-now.com/technology?id=sc_category&amp;sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d">
+      <data key="d0">Protected Data Practices</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7" />
+      <data key="d9">https://gatech.service-now.com/technology?id=sc_category&amp;sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/information-technology/password-policy">
+      <data key="d0">Password Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/information-technology/password-policy</data>
+      <data key="d1">Password Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">2</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d0">Responsible Disclosure Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy</data>
+      <data key="d1">Responsible Disclosure Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">2</data>
+    </node>
+    <node id="https://security.gatech.edu/system-administration-responsibilities/">
+      <data key="d0">System Administration Responsibilities</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://security.gatech.edu/system-administration-responsibilities/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://security.gatech.edu/report-incident/">
+      <data key="d0">https://security.gatech.edu/report-incident</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://security.gatech.edu/report-incident/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy">
+      <data key="d0">Data Governance and Management Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy</data>
+      <data key="d1">Data Governance and Management Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d0">Cyber Security Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/cyber-security-policy</data>
+      <data key="d1">Cyber Security Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="https://gatech.service-now.com/governance?id=sc_cat_item&amp;sys_id=84c6c452e7600300dd926217c2f6a980&amp;sysparm_category=d3187660db6f0050391b9837db961977">
+      <data key="d0">Policy Exception Request form</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7" />
+      <data key="d9">https://gatech.service-now.com/governance?id=sc_cat_item&amp;sys_id=84c6c452e7600300dd926217c2f6a980&amp;sysparm_category=d3187660db6f0050391b9837db961977</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures">
+      <data key="d0">oit.gatech.edu</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d0">Acceptable Use Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/acceptable-use-policy</data>
+      <data key="d1">Acceptable Use Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d0">Data Privacy Policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/data-privacy-policy</data>
+      <data key="d1">Data Privacy Policy | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="https://www.policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf">
+      <data key="d0">Exception Request Process Flowchart.pdf</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf</data>
+      <data key="d1">Our Apologies (404 error: page not found) | Policy Library</data>
+      <data key="d8">False</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="https://get.adobe.com/reader/">
+      <data key="d0">Download Acrobat Reader</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html</data>
+      <data key="d9">https://get.adobe.com/reader/</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://security.gatech.edu/report-vulnerability">
+      <data key="d0">https://security.gatech.edu/report-vulnerability</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://security.gatech.edu/report-vulnerability</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://bpb-us-e1.wpmucdn.com/404.html">
+      <data key="d0">Data Protection Safeguards Standard</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html</data>
+      <data key="d9">https://bpb-us-e1.wpmucdn.com/404.html</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d0">Policy Exceptions policy</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">True</data>
+      <data key="d5">True</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/information-technology/policy-exceptions</data>
+      <data key="d1">Policy Exceptions | Policy Library</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">3</data>
+    </node>
+    <node id="https://usg.policystat.com/search/?reference=148975&amp;sort=name">
+      <data key="d0">Data Governance and Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://usg.policystat.com/search/?reference=148975&amp;sort=name</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/dgm-policy">
+      <data key="d0">DG DGM Policy</data>
+      <data key="d1">DG DGM Policy | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/dgm-policy</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/data-gov-structure">
+      <data key="d0">DG Data Governance Structure</data>
+      <data key="d1">DG Data Governance Structure | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/data-gov-structure</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/data-domains">
+      <data key="d0">DG Data Domains</data>
+      <data key="d1">DG Data Domains | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/data-domains</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/data-management-cat">
+      <data key="d0">DG Data Management Categorization</data>
+      <data key="d1">DG Data Management Categorization | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/data-management-cat</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/systems-inventory">
+      <data key="d0">DG Systems Inventory</data>
+      <data key="d1">DG Systems Inventory | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/systems-inventory</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/data-element-dictionary">
+      <data key="d0">DG Data Element Dictionary</data>
+      <data key="d1">DG Data Element Dictionary | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/data-element-dictionary</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.usg.edu/records_management">
+      <data key="d0">Records Management and Archives</data>
+      <data key="d1">Records Management and Archives | University System of Georgia</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.usg.edu/records_management</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/data-protection-cat">
+      <data key="d0">DG Data Protection Categorization</data>
+      <data key="d1">DG Data Protection Categorization | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/data-protection-cat</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/9/2137/files/2023/05/data-protection-safeguards-rev2.0-20140314.pdf">
+      <data key="d0">bpb-us-e1.wpmucdn.com</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">application/pdf</data>
+      <data key="d9">https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/9/2137/files/2023/05/data-protection-safeguards-rev2.0-20140314.pdf</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/access-procedures">
+      <data key="d0">DG Access Procedures</data>
+      <data key="d1">DG Access Procedures | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/access-procedures</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/separation-of-duties">
+      <data key="d0">DG Separation of Duties</data>
+      <data key="d1">DG Separation of Duties | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/separation-of-duties</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/data-regulation-cat">
+      <data key="d0">DG Data Regulation Categorization</data>
+      <data key="d1">DG Data Regulation Categorization | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/data-regulation-cat</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/regulatory-compliance">
+      <data key="d0">DG Regulatory Compliance</data>
+      <data key="d1">DG Regulatory Compliance | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/regulatory-compliance</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/training">
+      <data key="d0">DG Training</data>
+      <data key="d1">DG Training | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/training</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/monitor">
+      <data key="d0">DG Monitor</data>
+      <data key="d1">DG Monitor | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/monitor</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/audit">
+      <data key="d0">DG Audit</data>
+      <data key="d1">DG Audit | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/audit</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://edm.gatech.edu/data-governance/audience">
+      <data key="d0">DG Audience</data>
+      <data key="d1">DG Audience | Enterprise Data Management</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=utf-8</data>
+      <data key="d9">https://edm.gatech.edu/data-governance/audience</data>
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://www.usg.edu/records_management/schedules">
+      <data key="d0">USG Records Retention Schedule</data>
+      <data key="d2">200</data>
+      <data key="d3">False</data>
+      <data key="d4">False</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://www.usg.edu/records_management/schedules</data>
+      <data key="d1" />
+      <data key="d10" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <node id="https://policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf">
+      <data key="d0">Exception Request Process Flowchart.pdf</data>
+      <data key="d2">404</data>
+      <data key="d10">HTTP 404</data>
+      <data key="d3">True</data>
+      <data key="d4">True</data>
+      <data key="d5">False</data>
+      <data key="d7">text/html; charset=UTF-8</data>
+      <data key="d9">https://policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf</data>
+      <data key="d1" />
+      <data key="d8">False</data>
+      <data key="d6">-1</data>
+    </node>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://gtlowvoltagestandards.gatech.edu/node/123">
+      <data key="d11">http://gtlowvoltagestandards.gatech.edu/node/123</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://www.police.gatech.edu/documents/reportrequest.pdf">
+      <data key="d11">GTPD Report Request Form</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://www.police.gatech.edu/frequently-asked-questions">
+      <data key="d11">See GTPD website at</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d11">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://www.usg.edu/audit/compliance/ethics/">
+      <data key="d11">University System of Georgia Ethics Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/legal/security-camera-use" target="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d11">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d11">Policy Exceptions</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d11">Responsible Disclosure Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://security.gatech.edu/information-security-procedures-standards-and-forms/">
+      <data key="d11">Security Procedures and Standards</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://gatech.service-now.com/technology?id=sc_category&amp;sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d">
+      <data key="d11">Protected Data Practices</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://www.policylibrary.gatech.edu/information-technology/password-policy">
+      <data key="d11">Password Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d11">Responsible Disclosure Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://security.gatech.edu/system-administration-responsibilities/">
+      <data key="d11">System Administration Responsibilities</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://security.gatech.edu/report-incident/">
+      <data key="d11">https://security.gatech.edu/report-incident</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d11">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d11">Policy Exceptions Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://security.gatech.edu/information-security-procedures-standards-and-forms/">
+      <data key="d11">Security Standards and Procedures</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-resources" target="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy">
+      <data key="d11">Data Governance and Management Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-resources" target="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-resources" target="https://gatech.service-now.com/technology?id=sc_category&amp;sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d">
+      <data key="d11">Protected Data Practices</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-resources" target="https://security.gatech.edu/information-security-procedures-standards-and-forms/">
+      <data key="d11">Security Procedures and Standards</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://gatech.service-now.com/governance?id=sc_cat_item&amp;sys_id=84c6c452e7600300dd926217c2f6a980&amp;sysparm_category=d3187660db6f0050391b9837db961977">
+      <data key="d11">Policy Exception Request form</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures">
+      <data key="d11">Georgia Tech IT Policy Website</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://www.policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf">
+      <data key="d11">Exception Request Process Flowchart.pdf</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://get.adobe.com/reader/">
+      <data key="d11">Download Acrobat Reader</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://security.gatech.edu/report-vulnerability">
+      <data key="d11">https://security.gatech.edu/report-vulnerability</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://bpb-us-e1.wpmucdn.com/404.html">
+      <data key="d11">Data Protection Safeguards Standard</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d11">Policy Exceptions policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://www.policylibrary.gatech.edu/information-technology/password-policy" target="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d11">Responsible Disclosure Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://security.gatech.edu/report-vulnerability">
+      <data key="d11">https://security.gatech.edu/report-vulnerability</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy" target="https://policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://usg.policystat.com/search/?reference=148975&amp;sort=name">
+      <data key="d11">Data Governance and Management | USG Business Procedures Manual Section 12.0: Data Governance and Management</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/dgm-policy">
+      <data key="d11">website</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/data-gov-structure">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/data-domains">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/data-management-cat">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/systems-inventory">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/data-element-dictionary">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://www.usg.edu/records_management">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/data-protection-cat">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/9/2137/files/2023/05/data-protection-safeguards-rev2.0-20140314.pdf">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://gatech.service-now.com/technology?id=sc_category&amp;sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/access-procedures">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/separation-of-duties">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/data-regulation-cat">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/regulatory-compliance">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/training">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/monitor">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/audit">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://edm.gatech.edu/data-governance/audience">
+      <data key="d11">Learn more</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d11">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://www.usg.edu/records_management/schedules">
+      <data key="d11">USG Records Retention Schedule</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy" target="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Georgia Tech Cyber Security Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://security.gatech.edu/information-security-procedures-standards-and-forms/">
+      <data key="d11">Security Procedures and Standards</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://gatech.service-now.com/technology?id=sc_category&amp;sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d">
+      <data key="d11">Protected Data Practices</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://www.policylibrary.gatech.edu/information-technology/password-policy">
+      <data key="d11">Password Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d11">Responsible Disclosure Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://security.gatech.edu/system-administration-responsibilities/">
+      <data key="d11">System Administration Responsibilities</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://security.gatech.edu/report-incident/">
+      <data key="d11">https://security.gatech.edu/report-incident</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/cyber-security-policy" target="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d11">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508">
+      <data key="d11">https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d11">Policy Exceptions</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy" target="https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy">
+      <data key="d11">Responsible Disclosure Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://policylibrary.gatech.edu/information-technology/data-resources">
+      <data key="d11">Data Access Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://www.policylibrary.gatech.edu/information-technology/policy-exceptions">
+      <data key="d11">Policy Exceptions Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/data-privacy-policy" target="https://security.gatech.edu/information-security-procedures-standards-and-forms/">
+      <data key="d11">Security Standards and Procedures</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://gatech.service-now.com/governance?id=sc_cat_item&amp;sys_id=84c6c452e7600300dd926217c2f6a980&amp;sysparm_category=d3187660db6f0050391b9837db961977">
+      <data key="d11">Policy Exception Request form</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures">
+      <data key="d11">Georgia Tech IT Policy Website</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/information-technology/acceptable-use-policy">
+      <data key="d11">Acceptable Use Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/information-technology/cyber-security-policy">
+      <data key="d11">Cyber Security Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/information-technology/data-privacy-policy">
+      <data key="d11">Data Privacy Policy</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf">
+      <data key="d11">Exception Request Process Flowchart.pdf</data>
+    </edge>
+    <edge source="https://policylibrary.gatech.edu/information-technology/policy-exceptions" target="https://get.adobe.com/reader/">
+      <data key="d11">Download Acrobat Reader</data>
+    </edge>
+  </graph>
+</graphml>

@@ -1,0 +1,321 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 900px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#f4b400", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "Security Camera Use | Policy Library", "shape": "dot", "size": 28, "title": "Security Camera Use | Policy Library\u003cbr\u003eURL: https://policylibrary.gatech.edu/legal/security-camera-use\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: True\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://gtlowvoltagestandards.gatech.edu/node/123", "label": "http://gtlowvoltagestandards.gatech.edu/node/123", "shape": "dot", "size": 24, "title": "http://gtlowvoltagestandards.gatech.edu/node/123\u003cbr\u003eURL: https://gtlowvoltagestandards.gatech.edu/node/123\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://www.police.gatech.edu/documents/reportrequest.pdf", "label": "GTPD Report Request Form", "shape": "dot", "size": 24, "title": "GTPD Report Request Form\u003cbr\u003eURL: https://www.police.gatech.edu/documents/reportrequest.pdf\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.police.gatech.edu/frequently-asked-questions", "label": "Frequently Asked Questions", "shape": "dot", "size": 16, "title": "Frequently Asked Questions\u003cbr\u003eURL: https://www.police.gatech.edu/frequently-asked-questions\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "label": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "shape": "dot", "size": 24, "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508\u003cbr\u003eURL: https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.usg.edu/audit/compliance/ethics/", "label": "University System of Georgia Ethics Policy", "shape": "dot", "size": 16, "title": "University System of Georgia Ethics Policy\u003cbr\u003eURL: https://www.usg.edu/audit/compliance/ethics/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "Acceptable Use Policy", "shape": "dot", "size": 20, "title": "Acceptable Use Policy\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "Cyber Security Policy", "shape": "dot", "size": 20, "title": "Cyber Security Policy\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "Data Privacy Policy", "shape": "dot", "size": 20, "title": "Data Privacy Policy\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/data-resources", "label": "Data Access Policy", "shape": "dot", "size": 20, "title": "Data Access Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/data-resources\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "Policy Exceptions", "shape": "dot", "size": 20, "title": "Policy Exceptions\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/information-technology/policy-exceptions\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "Responsible Disclosure Policy", "shape": "dot", "size": 20, "title": "Responsible Disclosure Policy\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://security.gatech.edu/information-security-procedures-standards-and-forms/", "label": "Security Procedures and Standards", "shape": "dot", "size": 16, "title": "Security Procedures and Standards\u003cbr\u003eURL: https://security.gatech.edu/information-security-procedures-standards-and-forms/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://gatech.service-now.com/technology?id=sc_category\u0026sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d", "label": "Protected Data Practices", "shape": "dot", "size": 16, "title": "Protected Data Practices\u003cbr\u003eURL: https://gatech.service-now.com/technology?id=sc_category\u0026sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "Password Policy", "shape": "dot", "size": 20, "title": "Password Policy\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/information-technology/password-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "Responsible Disclosure Policy", "shape": "dot", "size": 20, "title": "Responsible Disclosure Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://security.gatech.edu/system-administration-responsibilities/", "label": "System Administration Responsibilities", "shape": "dot", "size": 16, "title": "System Administration Responsibilities\u003cbr\u003eURL: https://security.gatech.edu/system-administration-responsibilities/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://security.gatech.edu/report-incident/", "label": "https://security.gatech.edu/report-incident", "shape": "dot", "size": 16, "title": "https://security.gatech.edu/report-incident\u003cbr\u003eURL: https://security.gatech.edu/report-incident/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "Data Governance and Management Policy", "shape": "dot", "size": 20, "title": "Data Governance and Management Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "Cyber Security Policy", "shape": "dot", "size": 20, "title": "Cyber Security Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/cyber-security-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://gatech.service-now.com/governance?id=sc_cat_item\u0026sys_id=84c6c452e7600300dd926217c2f6a980\u0026sysparm_category=d3187660db6f0050391b9837db961977", "label": "Policy Exception Request form", "shape": "dot", "size": 16, "title": "Policy Exception Request form\u003cbr\u003eURL: https://gatech.service-now.com/governance?id=sc_cat_item\u0026sys_id=84c6c452e7600300dd926217c2f6a980\u0026sysparm_category=d3187660db6f0050391b9837db961977\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures", "label": "oit.gatech.edu", "shape": "dot", "size": 24, "title": "oit.gatech.edu\u003cbr\u003eURL: https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "Acceptable Use Policy", "shape": "dot", "size": 20, "title": "Acceptable Use Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/acceptable-use-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "Data Privacy Policy", "shape": "dot", "size": 20, "title": "Data Privacy Policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/data-privacy-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://www.policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf", "label": "Exception Request Process Flowchart.pdf", "shape": "dot", "size": 24, "title": "Exception Request Process Flowchart.pdf\u003cbr\u003eURL: https://www.policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: HTTP 404"}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://get.adobe.com/reader/", "label": "Download Acrobat Reader", "shape": "dot", "size": 16, "title": "Download Acrobat Reader\u003cbr\u003eURL: https://get.adobe.com/reader/\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://security.gatech.edu/report-vulnerability", "label": "https://security.gatech.edu/report-vulnerability", "shape": "dot", "size": 24, "title": "https://security.gatech.edu/report-vulnerability\u003cbr\u003eURL: https://security.gatech.edu/report-vulnerability\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://bpb-us-e1.wpmucdn.com/404.html", "label": "Data Protection Safeguards Standard", "shape": "dot", "size": 24, "title": "Data Protection Safeguards Standard\u003cbr\u003eURL: https://bpb-us-e1.wpmucdn.com/404.html\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}, {"color": "#2e86ab", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "Policy Exceptions policy", "shape": "dot", "size": 20, "title": "Policy Exceptions policy\u003cbr\u003eURL: https://policylibrary.gatech.edu/information-technology/policy-exceptions\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: True\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://usg.policystat.com/search/?reference=148975\u0026sort=name", "label": "Data Governance and Management", "shape": "dot", "size": 16, "title": "Data Governance and Management\u003cbr\u003eURL: https://usg.policystat.com/search/?reference=148975\u0026sort=name\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/dgm-policy", "label": "DG DGM Policy", "shape": "dot", "size": 16, "title": "DG DGM Policy\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/dgm-policy\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/data-gov-structure", "label": "DG Data Governance Structure", "shape": "dot", "size": 16, "title": "DG Data Governance Structure\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/data-gov-structure\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/data-domains", "label": "DG Data Domains", "shape": "dot", "size": 16, "title": "DG Data Domains\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/data-domains\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/data-management-cat", "label": "DG Data Management Categorization", "shape": "dot", "size": 16, "title": "DG Data Management Categorization\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/data-management-cat\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/systems-inventory", "label": "DG Systems Inventory", "shape": "dot", "size": 16, "title": "DG Systems Inventory\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/systems-inventory\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/data-element-dictionary", "label": "DG Data Element Dictionary", "shape": "dot", "size": 16, "title": "DG Data Element Dictionary\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/data-element-dictionary\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.usg.edu/records_management", "label": "Records Management and Archives", "shape": "dot", "size": 16, "title": "Records Management and Archives\u003cbr\u003eURL: https://www.usg.edu/records_management\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/data-protection-cat", "label": "DG Data Protection Categorization", "shape": "dot", "size": 16, "title": "DG Data Protection Categorization\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/data-protection-cat\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/9/2137/files/2023/05/data-protection-safeguards-rev2.0-20140314.pdf", "label": "bpb-us-e1.wpmucdn.com", "shape": "dot", "size": 16, "title": "bpb-us-e1.wpmucdn.com\u003cbr\u003eURL: https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/9/2137/files/2023/05/data-protection-safeguards-rev2.0-20140314.pdf\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/access-procedures", "label": "DG Access Procedures", "shape": "dot", "size": 16, "title": "DG Access Procedures\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/access-procedures\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/separation-of-duties", "label": "DG Separation of Duties", "shape": "dot", "size": 16, "title": "DG Separation of Duties\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/separation-of-duties\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/data-regulation-cat", "label": "DG Data Regulation Categorization", "shape": "dot", "size": 16, "title": "DG Data Regulation Categorization\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/data-regulation-cat\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/regulatory-compliance", "label": "DG Regulatory Compliance", "shape": "dot", "size": 16, "title": "DG Regulatory Compliance\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/regulatory-compliance\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/training", "label": "DG Training", "shape": "dot", "size": 16, "title": "DG Training\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/training\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/monitor", "label": "DG Monitor", "shape": "dot", "size": 16, "title": "DG Monitor\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/monitor\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/audit", "label": "DG Audit", "shape": "dot", "size": 16, "title": "DG Audit\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/audit\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://edm.gatech.edu/data-governance/audience", "label": "DG Audience", "shape": "dot", "size": 16, "title": "DG Audience\u003cbr\u003eURL: https://edm.gatech.edu/data-governance/audience\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#a0a4a8", "font": {"color": "#222222"}, "id": "https://www.usg.edu/records_management/schedules", "label": "USG Records Retention Schedule", "shape": "dot", "size": 16, "title": "USG Records Retention Schedule\u003cbr\u003eURL: https://www.usg.edu/records_management/schedules\u003cbr\u003eStatus: 200\u003cbr\u003eDead: False\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: "}, {"color": "#d1495b", "font": {"color": "#222222"}, "id": "https://policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf", "label": "Exception Request Process Flowchart.pdf", "shape": "dot", "size": 24, "title": "Exception Request Process Flowchart.pdf\u003cbr\u003eURL: https://policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf\u003cbr\u003eStatus: 404\u003cbr\u003eDead: True\u003cbr\u003eStart node: False\u003cbr\u003eVisited: False\u003cbr\u003eError: HTTP 404"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "http://gtlowvoltagestandards.gatech.edu/node/123", "to": "https://gtlowvoltagestandards.gatech.edu/node/123"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "GTPD Report Request Form", "to": "https://www.police.gatech.edu/documents/reportrequest.pdf"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "See GTPD website at", "to": "https://www.police.gatech.edu/frequently-asked-questions"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "to": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "University System of Georgia Ethics Policy", "to": "https://www.usg.edu/audit/compliance/ethics/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "Acceptable Use Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "Cyber Security Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/legal/security-camera-use", "label": "", "title": "Data Privacy Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "to": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Cyber Security Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Data Privacy Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Policy Exceptions", "to": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Responsible Disclosure Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Security Procedures and Standards", "to": "https://security.gatech.edu/information-security-procedures-standards-and-forms/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Protected Data Practices", "to": "https://gatech.service-now.com/technology?id=sc_category\u0026sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Password Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/password-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Responsible Disclosure Policy", "to": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "System Administration Responsibilities", "to": "https://security.gatech.edu/system-administration-responsibilities/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "https://security.gatech.edu/report-incident", "to": "https://security.gatech.edu/report-incident/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "to": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Acceptable Use", "to": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Cyber Security", "to": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Policy Exceptions Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Security Standards and Procedures", "to": "https://security.gatech.edu/information-security-procedures-standards-and-forms/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-resources", "label": "", "title": "Data Governance and Management Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-resources", "label": "", "title": "Cyber Security Policy", "to": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-resources", "label": "", "title": "Protected Data Practices", "to": "https://gatech.service-now.com/technology?id=sc_category\u0026sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-resources", "label": "", "title": "Security Procedures and Standards", "to": "https://security.gatech.edu/information-security-procedures-standards-and-forms/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Policy Exception Request form", "to": "https://gatech.service-now.com/governance?id=sc_cat_item\u0026sys_id=84c6c452e7600300dd926217c2f6a980\u0026sysparm_category=d3187660db6f0050391b9837db961977"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Georgia Tech IT Policy Website", "to": "https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Acceptable Use Policy", "to": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Cyber Security Policy", "to": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Data Privacy Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Exception Request Process Flowchart.pdf", "to": "https://www.policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Download Acrobat Reader", "to": "https://get.adobe.com/reader/"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "https://security.gatech.edu/report-vulnerability", "to": "https://security.gatech.edu/report-vulnerability"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Acceptable Use Policy", "to": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Cyber Security Policy", "to": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Data Privacy Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#d1495b", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Data Protection Safeguards Standard", "to": "https://bpb-us-e1.wpmucdn.com/404.html"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Policy Exceptions policy", "to": "https://policylibrary.gatech.edu/information-technology/policy-exceptions"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Acceptable Use Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Cyber Security Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Data Privacy Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://www.policylibrary.gatech.edu/information-technology/password-policy", "label": "", "title": "Responsible Disclosure Policy", "to": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "https://security.gatech.edu/report-vulnerability", "to": "https://security.gatech.edu/report-vulnerability"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Acceptable Use Policy", "to": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Cyber Security Policy", "to": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy", "label": "", "title": "Data Privacy Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Data Governance and Management | USG Business Procedures Manual Section 12.0: Data Governance and Management", "to": "https://usg.policystat.com/search/?reference=148975\u0026sort=name"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "website", "to": "https://edm.gatech.edu/data-governance/dgm-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/data-gov-structure"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/data-domains"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/data-management-cat"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/systems-inventory"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/data-element-dictionary"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://www.usg.edu/records_management"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/data-protection-cat"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/9/2137/files/2023/05/data-protection-safeguards-rev2.0-20140314.pdf"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://gatech.service-now.com/technology?id=sc_category\u0026sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/access-procedures"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/separation-of-duties"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/data-regulation-cat"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/regulatory-compliance"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/training"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/monitor"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/audit"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Learn more", "to": "https://edm.gatech.edu/data-governance/audience"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "to": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "USG Records Retention Schedule", "to": "https://www.usg.edu/records_management/schedules"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-governance-and-management-policy", "label": "", "title": "Georgia Tech Cyber Security Policy", "to": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Security Procedures and Standards", "to": "https://security.gatech.edu/information-security-procedures-standards-and-forms/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Protected Data Practices", "to": "https://gatech.service-now.com/technology?id=sc_category\u0026sys_id=8ed06af7dbcf8c10fc9efe8d0f96195d"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Password Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/password-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Responsible Disclosure Policy", "to": "https://policylibrary.gatech.edu/information-technology/responsible-disclosure-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "System Administration Responsibilities", "to": "https://security.gatech.edu/system-administration-responsibilities/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "https://security.gatech.edu/report-incident", "to": "https://security.gatech.edu/report-incident/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy", "label": "", "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "to": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508", "to": "https://secure.ethicspoint.com/domain/en/report_custom.asp?clientid=7508"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Cyber Security Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Data Privacy Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Policy Exceptions", "to": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy", "label": "", "title": "Responsible Disclosure Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/responsible-disclosure-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Acceptable Use", "to": "https://www.policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Cyber Security", "to": "https://www.policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Data Access Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-resources"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Policy Exceptions Policy", "to": "https://www.policylibrary.gatech.edu/information-technology/policy-exceptions"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy", "label": "", "title": "Security Standards and Procedures", "to": "https://security.gatech.edu/information-security-procedures-standards-and-forms/"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Policy Exception Request form", "to": "https://gatech.service-now.com/governance?id=sc_cat_item\u0026sys_id=84c6c452e7600300dd926217c2f6a980\u0026sysparm_category=d3187660db6f0050391b9837db961977"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Georgia Tech IT Policy Website", "to": "https://www.oit.gatech.edu/service/information-security/security-policies-standards-and-procedures"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Acceptable Use Policy", "to": "https://policylibrary.gatech.edu/information-technology/acceptable-use-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Cyber Security Policy", "to": "https://policylibrary.gatech.edu/information-technology/cyber-security-policy"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Data Privacy Policy", "to": "https://policylibrary.gatech.edu/information-technology/data-privacy-policy"}, {"arrows": "to", "color": "#d1495b", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Exception Request Process Flowchart.pdf", "to": "https://policylibrary.gatech.edu/sites/default/files/Exception%2520Request%2520Process%2520Flowchart.pdf"}, {"arrows": "to", "color": "#9aa4ad", "from": "https://policylibrary.gatech.edu/information-technology/policy-exceptions", "label": "", "title": "Download Acrobat Reader", "to": "https://get.adobe.com/reader/"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"font": {"size": 14}, "shape": "dot", "scaling": {"min": 12, "max": 36}}, "edges": {"arrows": {"to": {"enabled": true}}, "smooth": {"enabled": true, "type": "dynamic"}}, "physics": {"barnesHut": {"gravitationalConstant": -3200, "springLength": 180, "springConstant": 0.03}, "minVelocity": 0.75}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
