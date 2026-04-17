@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import argparse
 import csv
 import json
@@ -11,7 +10,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import urljoin, urlsplit, urlunsplit
-
 import networkx as nx
 import requests
 from bs4 import BeautifulSoup, Tag
