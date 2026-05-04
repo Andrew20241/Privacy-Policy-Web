@@ -3,7 +3,6 @@
 This project crawls a privacy or policy webpage, follows links in the main content area, flags dead links, and exports the results as graph and CSV files.
 
 ## Requirements
-
 - Python 3.14 or newer
 - `uv` recommended for dependency management
 
